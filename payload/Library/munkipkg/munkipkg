@@ -1,4 +1,4 @@
-#!./Python.framework/Versions/Current/bin/python3
+#!/Library/munkipkg/Python.framework/Versions/Current/bin/python3
 # encoding: utf-8
 """
 munkipkg

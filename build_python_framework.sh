@@ -6,7 +6,7 @@ MUNKIPKG_DIR=$(dirname "$0")
 REQUIREMENTS="${MUNKIPKG_DIR}/requirements.txt"
 PYTHON_VERSION=3.9.7
 MACOS_VERSION=11
-MUNKIPKG_INSTALL_DIR="${MUNKIPKG_DIR}/payload/usr/local/munkipkg"
+MUNKIPKG_INSTALL_DIR="${MUNKIPKG_DIR}/payload/Library/munkipkg"
 
 # Sanity checks.
 GIT=$(which git)
