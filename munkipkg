@@ -281,9 +281,11 @@ def get_build_info(project_dir, options):
         'preserve_xattr',
         'suppress_bundle_relocation',
         'distribution_style',
+        'distribution',
         'signing_info',
-        'notarization_info',
+        'notarization_info'
     ]
+
     build_file = os.path.join(project_dir, BUILD_INFO_FILE)
     file_type = None
     if not options.yaml and not options.json:
@@ -600,7 +602,6 @@ def add_signing_options_to_cmd(cmd, build_info, options):
             else:
                 cmd.extend(['--timestamp=none'])
 
-
 def build_pkg(build_info, options):
     '''Use pkgbuild tool to build our package'''
     cmd = [PKGBUILD,
@@ -648,12 +649,21 @@ def build_distribution_pkg(build_info, options):
         build_info['project_dir'], REQUIREMENTS_PLIST)
     if os.path.exists(requirements_plist):
         cmd.extend(['--product', requirements_plist])
+
     # if build_info contains a product id use that for product id, otherwise
     # use package identifier
     product_id = build_info.get('product id', build_info['identifier'])
     cmd.extend(['--identifier', product_id, '--version', str(build_info['version'])])
-    # add the input and output package paths
-    cmd.extend(['--package', pkginputname, distoutputname])
+
+    if 'distribution' in build_info:
+        distributionname = os.path.join(build_info['project_dir'], build_info['distribution']['name'])
+        if os.path.exists(distributionname):
+            cmd.extend(['--distribution', distributionname])
+            cmd.extend(['--resources', build_info['distribution']['resources']])
+            cmd.extend(['--package-path', build_info['build_dir'], distoutputname])
+    else:
+        # add the input and output package paths
+        cmd.extend(['--package', pkginputname, distoutputname])
 
     retcode = subprocess.call(cmd)
     if retcode:
