@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-script minSpecVersion="2">
+    <title>munkipkg-1.0</title>
+    <background mime-type="image/png" file="munkipkg.png" scaling="proportional"/>
+    <background-darkAqua mime-type="image/png" file="munkipkg.png" scaling="proportional"/>
+    <welcome file="welcome.html" mime-type="text/html" />
+    <conclusion file="conclusion.html" mime-type="text/html" />
+    <license file="LICENSE.md"/>
+    <options customize="never" allow-external-scripts="no"/>
+    <domains enable_localSystem="true" />
+    <installation-check script="installCheck();"/>
+    <script>
+function installCheck() {
+    if(!(system.compareVersions(system.version.ProductVersion, '10.6.0') >= 0)) {
+        my.result.title = 'Unable to install';
+        my.result.message = 'munkipkg-1.0 requires Mac OS X 10.6 or later.';
+        my.result.type = 'Fatal';
+        return false;
+    }
+    return true;
+}
+    </script>
+    <choices-outline>
+        <line choice="munkipkg-1.0"/>
+    </choices-outline>
+    <choice id="munkipkg-1.0" title="munkipkg-1.0">
+        <pkg-ref id="munkipkg-1.0.pkg"/>
+    </choice>
+    <pkg-ref id="munkipkg-1.0.pkg" auth="Root">munkipkg-1.0.pkg</pkg-ref>
+</installer-script>
