@@ -160,6 +160,12 @@ Note in the JSON and YAML examples that the version "number" is wrapped in quote
 **distribution_style**  
 Boolean: true or false. Defaults to false. If present and true, package built will be a "distribution-style" package.
 
+**distribution_file**  
+String containing the distribution file name. This option is used in combination with distribution_style.
+This option allows you to build distribution style packages with a distribution file. Additionaly a rescources folder can be created in the project dir, which allows you to specify recources in your distribution file. See also the munki-pkg example package.
+
+More information about distribution packages can be found on: https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/DistributionDefinitionRef/Chapters/Distribution_XML_Ref.html
+
 **identifier**  
 String containing the package identifier. If this is missing, one is constructed using the name of the package project directory.
 
@@ -363,6 +369,10 @@ With `staple_timeout` parameter you can specify timeout in seconds (**default: 3
 
 `--create`  
 Creates a new empty template package project. See [**Creating a new project**](#creating-a-new-project).
+
+`--dist`, `--distribution`  
+Use this option to create a distribution style pkg with a template distribution file and a resources folder. Useful only with --create option.
+You can find more information about distribution pkg in the "distribution_file" section.
 
 `--import`  
 `munkipkg --import /path/to/flat.pkg /path/to/project_dir`
