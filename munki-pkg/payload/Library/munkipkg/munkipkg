@@ -1059,7 +1059,9 @@ def convert_packageinfo(pkg_path, project_dir, options):
         build_info['ownership'] = 'preserve'
 
     distribution_file = os.path.join(project_dir, 'Distribution')
-    build_info['distribution_style'] = os.path.exists(distribution_file)
+    if os.path.exists(distribution_file):
+        build_info['distribution_style'] = True
+        build_info['distribution_file'] = "Distribution"
 
     write_build_info(build_info, project_dir, options)
     unlink_if_possible(package_info_file)
