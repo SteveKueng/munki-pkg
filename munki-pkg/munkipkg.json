@@ -1,0 +1,15 @@
+{
+    "displayName": "munkipkg",
+    "publisher": "Github",
+    "version": "1.0",
+    "bundle_id": "com.github.pkg.munkipkg",
+    "logo": "munkipkg.png",
+    "owner": "Steve Kueng",
+    "description": "munkipkg is a simple tool for building packages in a consistent, repeatable manner from source files and scripts in a project directory.",
+    "privacy_url": "https://www.umb.ch",
+    "info_url": "https://umb.atlassian.net/wiki/spaces/TEK/pages/3655925778/Packaging+of+macOS+Apps",
+    "developer": "UMB",
+    "notes": "",
+    "ignoreAppVersion": true,
+    "installAsManaged": false
+}

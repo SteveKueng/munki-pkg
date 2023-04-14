@@ -84,9 +84,9 @@ function installCheck() {
         <line choice="__PRODUCT__"/>
     </choices-outline>
     <choice id="__PRODUCT__" title="__PRODUCT__">
-        <pkg-ref id="__PRODUCT__.pkg"/>
+        <pkg-ref id="__PRODUCT__-__VERSION__.pkg"/>
     </choice>
-    <pkg-ref id="__PRODUCT__.pkg" auth="Root">__PRODUCT__.pkg</pkg-ref>
+    <pkg-ref id="__PRODUCT__-__VERSION__.pkg" auth="Root">__PRODUCT__-__VERSION__.pkg</pkg-ref>
 </installer-script>"""
 
 BUILD_INFO_FILE = "build-info"
@@ -550,7 +550,7 @@ def create_default_distribution(project_dir):
     product_name = os.path.basename(project_dir.rstrip('/')).replace(" ", "")
     distribution_file = os.path.join(project_dir, 'Distribution')
     fileobj = open(distribution_file, "w")
-    fileobj.write(DISTRIBUTION_DEFAULT.replace("__PRODUCT__", product_name + "-" + VERSION))
+    fileobj.write(DISTRIBUTION_DEFAULT.replace("__PRODUCT__", product_name).replace("__VERSION__", VERSION))
     fileobj.close()
 
 
